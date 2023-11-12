@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:recommendation/core/answer.controller.dart';
-import 'package:recommendation/component/custom_radio.dart';
-import 'package:recommendation/data/question.dart';
-import 'package:recommendation/core/router.dart';
-import 'package:recommendation/core/utils.dart';
+import 'package:todaytest/core/answer.controller.dart';
+import 'package:todaytest/component/custom_radio.dart';
+import 'package:todaytest/data/question.dart';
+import 'package:todaytest/core/router.dart';
+import 'package:todaytest/core/utils.dart';
 
 class QuestionScreen extends StatefulWidget {
   final String questionIndex;
@@ -130,7 +130,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                               '/question/${answerController.getIndex(next)}');
                         }
                       },
-                      title: 'YES',
+                      title: '예',
                       isSelected: prevAnswer ?? false,
                     ),
                     const SizedBox(
@@ -166,7 +166,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                               '/question/${answerController.getIndex(sub)}');
                         }
                       },
-                      title: 'NO',
+                      title: '아니오',
                       isSelected: prevAnswer == null ? false : !prevAnswer,
                     ),
                   ],

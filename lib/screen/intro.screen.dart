@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:recommendation/core/answer.controller.dart';
+import 'package:todaytest/core/answer.controller.dart';
 
 import '../core/router.dart';
 
@@ -51,7 +51,7 @@ class _IntroScreenState extends State<IntroScreen> {
                     height: 50,
                   ),
                   Text(
-                    'Find out which test\nyou need',
+                    '내게 꼭 필요한 검사를\n알아보아요',
                     style: textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.w600,
                       color: Theme.of(context).primaryColor,
@@ -61,7 +61,7 @@ class _IntroScreenState extends State<IntroScreen> {
                     height: 28,
                   ),
                   Text(
-                    'Which of the many tests\nin the hospital would be necessary?',
+                    '병원의 수많은 검사들 중 어떤 검사가\n필요할까요?',
                     style: textTheme.bodyMedium?.copyWith(
                       color: Theme.of(context).primaryColor,
                     ),
@@ -70,7 +70,7 @@ class _IntroScreenState extends State<IntroScreen> {
                     height: 28,
                   ),
                   Text(
-                    '''Don't miss out on important conditions with TodayTest and get treated in time.''',
+                    ''''오늘검사'와 함께 중요한 질환을\n놓치지 마시고 제때에 치료받으세요.''',
                     style: textTheme.bodyMedium?.copyWith(
                       color: Theme.of(context).primaryColor,
                     ),
@@ -105,7 +105,7 @@ class _IntroScreenState extends State<IntroScreen> {
               vertical: 15,
             ),
             child: Text(
-              'Start AI Questionnaire',
+              'AI문진 시작하기',
               style: textTheme.bodyMedium?.copyWith(
                 color: Colors.white,
               ),

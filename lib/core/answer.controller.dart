@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:recommendation/core/utils.dart';
-import 'package:recommendation/data/question.dart';
+import 'package:todaytest/core/utils.dart';
+import 'package:todaytest/data/question.dart';
 
 class AnswerController with ChangeNotifier {
   /// 모든 답변 종류 : {index : 답변} 형식

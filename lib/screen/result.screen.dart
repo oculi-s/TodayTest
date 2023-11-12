@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:recommendation/core/answer.controller.dart';
+import 'package:todaytest/core/answer.controller.dart';
 import 'package:screenshot/screenshot.dart';
 
 import "../core/save_mobile.dart" if (dart.library.html) "../core/save_web.dart"
@@ -64,7 +64,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                   const EdgeInsets.symmetric(horizontal: 16),
                               child: Text(
                                 controller.checkUpList.isNotEmpty
-                                    ? 'Test Recommendation Results'
+                                    ? '검사 추천 결과'
                                     : "'오늘검사' 추천 결과입니다",
                                 style: textTheme.headlineSmall?.copyWith(
                                   color: Theme.of(context).primaryColor,
@@ -110,7 +110,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                                     width: 4,
                                                   ),
                                                   Text(
-                                                    'Please check!',
+                                                    '확인해 주세요!',
                                                     style: textTheme.titleSmall
                                                         ?.copyWith(
                                                       color: Theme.of(context)
@@ -125,7 +125,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                                 height: 10,
                                               ),
                                               Text(
-                                                "Each test is recommended considering the patient's symptoms and history, but the most important thing is the doctor's judgment. Multiple tests can be performed together if necessary for accurate diagnosis.",
+                                                '각 검사는 환자의 증상과 과거력 등을 고려하여 추천되지만, 가장 중요한 것은 의사 선생님의 판단입니다. 정확한 진단을 위해 필요한 경우 여러 검사를 함께 실시할 수 있습니다.',
                                                 style: textTheme.titleMedium
                                                     ?.copyWith(
                                                   color: Theme.of(context)
@@ -153,7 +153,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              'My symptom',
+                                              '나의 증상',
                                               style: textTheme.titleLarge
                                                   ?.copyWith(
                                                 color: Theme.of(context)
@@ -232,7 +232,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                           vertical: 32,
                                         ),
                                         child: Text(
-                                          'Recommended tests',
+                                          '추천 검사',
                                           style: textTheme.titleLarge?.copyWith(
                                             color:
                                                 Theme.of(context).primaryColor,
@@ -381,7 +381,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       vertical: 15,
                     ),
                     child: Text(
-                      'Save result',
+                      '결과 저장하기',
                       style: textTheme.bodyMedium?.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.w500,

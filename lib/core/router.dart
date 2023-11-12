@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:recommendation/screen/intro.screen.dart';
-import 'package:recommendation/screen/question.screen.dart';
-import 'package:recommendation/screen/result.screen.dart';
-import 'package:recommendation/screen/splash.screen.dart';
+import 'package:todaytest/screen/intro.screen.dart';
+import 'package:todaytest/screen/question.screen.dart';
+import 'package:todaytest/screen/result.screen.dart';
+import 'package:todaytest/screen/splash.screen.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/',

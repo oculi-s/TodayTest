@@ -1,4 +1,4 @@
-package com.example.recommendation
+package com.todaytest.package.name
 
 import io.flutter.embedding.android.FlutterActivity
 

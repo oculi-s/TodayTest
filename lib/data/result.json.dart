@@ -2,9 +2,9 @@ part of '../screen/result.screen.dart';
 
 final checkupInfo = {
   "Gastroscopy (위내시경)": {
-    "name": "Gastroscopy",
+    "name": "위내시경",
     "contents":
-        "It is conducted to determine the cause of symptoms such as gastric pain, indigestion, and anemia. It also monitors the progress of gastric diseases and the treatment response. \n\nFor those with a family history of gastric cancer, performing a 'Helicobacter test' through gastroscopy can help prevent gastric cancer.",
+        "위 통증, 소화 불량, 빈혈 등의 증상이 있을 때 원인을 파악하기 위해 실시합니다. 또한, 위 질환의 진행 상황이나 치료 반응을 모니터링하기 위해서도 합니다. \n\n위암 가족력이 있는 분들의 경우 위내시경 검사를 통해 ‘헬리코박터 검사’를 시행하시면 위암 예방에 도움이 됩니다.",
     "icon": "stomach.png",
   },
   "Colonoscopy (대장내시경)": {

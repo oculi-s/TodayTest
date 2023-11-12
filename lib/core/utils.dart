@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:recommendation/data/question.dart';
+import 'package:todaytest/data/question.dart';
 
 class Utils {
   Utils._();

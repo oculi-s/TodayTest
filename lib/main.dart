@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:recommendation/core/answer.controller.dart';
-import 'package:recommendation/core/router.dart';
+import 'package:todaytest/core/answer.controller.dart';
+import 'package:todaytest/core/router.dart';
 
 void main() {
   runApp(const MainApp());

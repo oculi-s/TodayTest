@@ -1,15 +1,15 @@
 # TodayTest
 
 <div align="center">
-  <a href="https://wmcc.yonsei.ac.kr">
-    <img src="./source/img/Logo.png" alt="Logo" height="140">
+  <a href="https://todaytest.org">
+    <img src="./assets/logo.png" alt="Logo" height="140">
   <h3 align="center">오늘검사2.0</h3>
   </a>
   </a>
   <p align="center">
     AI와 진행한 증상문답으로 오늘 진행할 검사와 자신의 질병 미리보기 서비스
     <br />
-    <a href=""><strong>샘플 페이지 »</strong></a>
+    <a href="https://todaytest.org"><strong>샘플 페이지 »</strong></a>
 
     BioBytes
   </p>
@@ -17,7 +17,7 @@
 
 ## 개발정보
 1) DB control : File-system
-2) Framework : ![Node.js] ![Express.js]
+2) Framework : ![Flutter]
 3) UserControl : :x:
 4) Server : ![Ubuntu] ![Nginx]
 5) API : ![OpenAI]
@@ -45,3 +45,4 @@
 [Coffee]: https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png
 [CodeForces]: https://badges.joonhyung.xyz/codeforces/oculis.svg
 [Solved.ac]: http://mazassumnida.wtf/api/mini/generate_badge?boj=oculis
+[Flutter]: https://img.shields.io/badge/Flutter-02569B?logo=flutter&logoColor=fff&style=flat
