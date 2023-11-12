@@ -1,0 +1,154 @@
+{
+  "1": {
+    "title": "Do you experience persistent pain around the back of your neck?",
+    "subQuestion": "1-1",
+    "checkUp": [
+      "Gastroscopy (위내시경)"
+    ],
+    "next": "2",
+    "current": "1",
+    "expression": "pain around the solar plexus"
+  },
+  "2": {
+    "title": "최근에 체중이 감소하였나요?",
+    "subQuestion": "1-2",
+    "checkUp": [],
+    "next": "2",
+    "current": "1-1",
+    "expression": "체중 감소"
+  },
+  "3": {
+    "title": "헬리코박터 균이 있다고\n들으신적 있으신가요?",
+    "subQuestion": "",
+    "checkUp": [],
+    "next": "2",
+    "current": "1-2",
+    "expression": "헬리코박터 감염"
+  },
+  "4": {
+    "title": "특별한 원인 없는 소화불량이나\n설사가 지속되나요?",
+    "subQuestion": "2-1",
+    "checkUp": [
+      "Colonoscopy (대장내시경)"
+    ],
+    "next": "3",
+    "current": "2",
+    "expression": "소화불량 또는 설사"
+  },
+  "5": {
+    "title": "갑자기 변비가 생기지는\n않으셨나요?",
+    "subQuestion": "2-2",
+    "checkUp": [],
+    "next": "3",
+    "current": "2-1",
+    "expression": "변비"
+  },
+  "6": {
+    "title": "가족 중 대장암 진단 받으셨던\n분이 있으신가요?",
+    "subQuestion": "",
+    "checkUp": [],
+    "next": "3",
+    "current": "2-2",
+    "expression": "대장암 가족력"
+  },
+  "7": {
+    "title": "오른쪽 상복부가 쿡쿡 찌르듯이\n아프거나 불편하신가요?",
+    "subQuestion": "3-1",
+    "checkUp": [
+      "abdominal Ultrasound (복부 초음파)"
+    ],
+    "next": "4",
+    "current": "3",
+    "expression": "우상복부 불편감"
+  },
+  "8": {
+    "title": "담석이나 담낭 용종이 있다고\n들으신적 있으신가요?",
+    "subQuestion": "3-2",
+    "checkUp": [],
+    "next": "4",
+    "current": "3-1",
+    "expression": "담석 또는 담낭용종"
+  },
+  "9": {
+    "title": "지방간이 있다거나\n간에 낭종이나 혹이 있다고\n들으셨던적 있으신가요?",
+    "subQuestion": "",
+    "checkUp": [],
+    "next": "4",
+    "current": "3-2",
+    "expression": "지방간 또는 간낭종이나 혹"
+  },
+  "10": {
+    "title": "목이 자주 마르고\n소변을 자주 보게 되나요?",
+    "subQuestion": "4-1",
+    "checkUp": [
+      "Diabetes Test (당뇨병 검사)"
+    ],
+    "next": "5",
+    "current": "4",
+    "expression": "다음, 다뇨"
+  },
+  "11": {
+    "title": "가족 중 당뇨병을\n진단 받으신 분이 계신가요?",
+    "subQuestion": "",
+    "checkUp": [],
+    "next": "5",
+    "current": "4-1",
+    "expression": "당뇨 가족력"
+  },
+  "12": {
+    "title": "기침이 지속되거나\n숨이 차시나요?",
+    "subQuestion": "5-1",
+    "checkUp": [
+      "Chest PA (흉부 엑스레이)"
+    ],
+    "next": "6",
+    "current": "5",
+    "expression": "기침, 숨참"
+  },
+  "13": {
+    "title": "흡연을 10년 이상 하셨나요?",
+    "subQuestion": "",
+    "checkUp": [],
+    "next": "6",
+    "current": "5-1",
+    "expression": "흡연(10년 이상)"
+  },
+  "14": {
+    "title": "소변을 볼 때 따끔거리거나\n통증이 있나요?",
+    "subQuestion": "6-1",
+    "checkUp": [
+      "Urinalysis (요분석)"
+    ],
+    "next": "7",
+    "current": "6",
+    "expression": "배뇨 시 통증"
+  },
+  "15": {
+    "title": "소변에 거품이 너무 많이 나거나,\n피가 섞여 있나요?",
+    "subQuestion": "",
+    "checkUp": [],
+    "next": "7",
+    "current": "6-1",
+    "expression": "거품뇨 또는 혈뇨"
+  },
+  "16": {
+    "title": "가슴이 답답한 느낌이 있거나\n통증이 있나요?",
+    "subQuestion": "7-1",
+    "checkUp": [
+      "ECG (심전도)",
+      "Echocardiogram (심초음파)",
+      "Thyroid Function Test (갑상선 기능 검사)"
+    ],
+    "next": "",
+    "current": "7",
+    "expression": "가슴 답답함 또는 가슴 통증"
+  },
+  "17": {
+    "title": "간혹 심하게 두근거리거나,\n맥박이 불규칙하다는 느낌을\n받은 적 있나요?",
+    "subQuestion": "",
+    "checkUp": [],
+    "next": "",
+    "current": "7-1",
+    "expression": "가슴 두근거림"
+  }
+}
