@@ -1,10 +1,10 @@
 .env
-.windows/
-.macos/
-.linux/
-.web/
-.android/
-.ios/
+windows/
+macos/
+linux/
+web/
+android/
+ios/
 
 # Miscellaneous
 *.class
