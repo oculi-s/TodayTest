@@ -1,10 +1,11 @@
 .env
-windows/
-macos/
-linux/
-web/
-android/
-ios/
+**/env.g.dart
+**/windows/
+**/linux/
+**/web/
+**/android/
+**/macos/
+**/ios/
 
 # Miscellaneous
 *.class

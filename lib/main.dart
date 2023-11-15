@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todaytest/core/answer.controller.dart';
 import 'package:todaytest/core/router.dart';
+import 'package:dart_openai/dart_openai.dart';
+import 'package:todaytest/env/env.dart';
 
-void main() {
+void main() async {
+  OpenAI.apiKey = Env.apiKey;
   runApp(const MainApp());
 }
 

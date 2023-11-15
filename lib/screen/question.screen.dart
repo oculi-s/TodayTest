@@ -19,160 +19,143 @@ class QuestionScreen extends StatefulWidget {
   State<QuestionScreen> createState() => _QuestionScreenState();
 }
 
-class _QuestionScreenState extends State<QuestionScreen> {
-  Question? question;
+class Bubble extends StatelessWidget {
+  final String from, label;
 
-  @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      try {
-        question = Utils().getQuestion(widget.questionIndex);
-
-        setState(() {});
-      } catch (e) {
-        router.go('/');
-      }
-    });
-
-    super.initState();
-  }
+  const Bubble({
+    Key? key,
+    required this.from,
+    required this.label,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final answerController = context.read<AnswerController>();
-    bool? prevAnswer = answerController.getAnswer(widget.questionIndex);
-    var textTheme = Theme.of(context).textTheme;
+    var theme = Theme.of(context);
+    var textTheme = theme.textTheme;
+    var isDoc = from == 'doctor';
+    var align = isDoc ? CrossAxisAlignment.start : CrossAxisAlignment.end;
 
-    return question == null
-        ? const SizedBox.shrink()
-        : Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              leading: MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
-                  onTap: () {
-                    if (router.canPop()) {
-                      router.pop();
-                    }
-                  },
-                  child: Icon(
-                    Icons.arrow_back_ios_new_rounded,
-                    color: Theme.of(context).primaryColor,
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Container(
+        alignment: Alignment.centerRight,
+        decoration: BoxDecoration(
+          border: Border.all(width: 1),
+          borderRadius: BorderRadius.all(
+            Radius.circular(8.0),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            crossAxisAlignment: align,
+            children: [
+              SizedBox(
+                width: 200,
+                child: SvgPicture.asset(
+                  'assets/question.svg',
+                ),
+              ),
+              SizedBox(
+                width: 200,
+                child: Text(
+                  label,
+                  style: textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: theme.primaryColor,
                   ),
                 ),
               ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _QuestionScreenState extends State<QuestionScreen> {
+  final myController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: () {
+              if (router.canPop()) {
+                router.pop();
+              }
+            },
+            child: Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: Theme.of(context).primaryColor,
             ),
-            body: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 7.0),
-                          child: SvgPicture.asset(
-                            'assets/question.svg',
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 12,
-                        ),
-                        Expanded(
-                          child: Text(
-                            question!.title,
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge
-                                ?.copyWith(
-                                  color: Theme.of(context).primaryColor,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 19,
-                                ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 40,
-                    ),
-                    CustomRadioComponent(
-                      onSelect: () {
-                        /// 예 시나리오
-                        /// 1. clearResult - 현재 응답된 질문 이후 순서 질문의 기존 응답을 전부 삭제
-                        /// 2. setAnswer - {index : bool} 형태로 답변 저장(true), {index: String} 형태로 질문에 해당하는 표현 문구 저장
-                        /// 3. setCheckup - 다음 질문 혹은 결과 화면으로 넘어갈때 호출, 질문 그룹별 Yes 응답이 하나라도 있을 경우 해당 그룹의 추천 검사 저장
-                        /// 4. 화면 이동
-                        answerController.clearResult(widget.questionIndex);
-
-                        String next = question!.next;
-
-                        answerController.setAnswer(
-                          widget.questionIndex,
-                          true,
-                          question!,
-                        );
-
-                        answerController.setCheckup();
-                        if (next.isEmpty) {
-                          router.push('/result');
-                        } else {
-                          router.push(
-                              '/question/${answerController.getIndex(next)}');
-                        }
-                      },
-                      title: '예',
-                      isSelected: prevAnswer ?? false,
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    CustomRadioComponent(
-                      onSelect: () {
-                        /// 아니오 시나리오
-                        /// 1. clearResult - 현재 응답된 질문 이후 순서 질문의 기존 응답을 전부 삭제
-                        /// 2. setAnswer - {index : bool} 형태로 답변 저장(false), 현재 index의 표현 문구 삭제
-                        /// 3. setCheckup - 다음 질문 혹은 결과 화면으로 넘어갈때 호출, 질문 그룹별 Yes 응답이 하나라도 있을 경우 해당 그룹의 추천 검사 저장
-                        /// 4. 화면 이동
-                        answerController.clearResult(widget.questionIndex);
-
-                        String sub = question!.subQuestion;
-                        String next = question!.next;
-
-                        answerController.setAnswer(
-                          widget.questionIndex,
-                          false,
-                          question!,
-                        );
-
-                        if (sub.isEmpty && next.isEmpty) {
-                          answerController.setCheckup();
-                          router.push('/result');
-                        } else if (sub.isEmpty && question!.next.isNotEmpty) {
-                          answerController.setCheckup();
-                          router.push(
-                              '/question/${answerController.getIndex(next)}');
-                        } else {
-                          router.push(
-                              '/question/${answerController.getIndex(sub)}');
-                        }
-                      },
-                      title: '아니오',
-                      isSelected: prevAnswer == null ? false : !prevAnswer,
-                    ),
-                  ],
-                ),
-              ),
+          ),
+        ),
+      ),
+      body: SafeArea(
+        child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16,
             ),
-          );
+            child: Column(
+              children: const [
+                Bubble(
+                  from: 'doctor',
+                  label: '어디가 아파서 오셨나요?',
+                ),
+                Bubble(
+                  from: 'patient',
+                  label: '가슴이 아파서 왔어요.',
+                ),
+              ],
+            )),
+      ),
+      // bottomNavigationBar: Padding(
+      //   padding: const EdgeInsets.symmetric(horizontal: 16.5).copyWith(
+      //     top: 33,
+      //     bottom: 24,
+      //   ),
+      //   child: Column(children: [
+      //     Container(
+      //       margin: EdgeInsets.all(8),
+      //       child: TextField(
+      //         autofocus: true,
+      //         controller: myController,
+      //       ),
+      //     ),
+      //     ElevatedButton(
+      //       style: ElevatedButton.styleFrom(
+      //         shape: RoundedRectangleBorder(
+      //           borderRadius: BorderRadius.circular(
+      //             12,
+      //           ),
+      //           side: BorderSide.none,
+      //         ),
+      //         backgroundColor: Theme.of(context).primaryColor,
+      //       ),
+      //       onPressed: () async {
+      //         router.replace('/question/1');
+      //       },
+      //       child: Padding(
+      //         padding: const EdgeInsets.symmetric(
+      //           vertical: 15,
+      //         ),
+      //         child: Text(
+      //           '전송',
+      //           style: textTheme.bodyMedium?.copyWith(
+      //             color: Colors.white,
+      //           ),
+      //         ),
+      //       ),
+      //     ),
+      //   ]),
+      // ),
+    );
   }
 }

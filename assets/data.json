@@ -1,13 +1,13 @@
 {
   "1": {
-    "title": "Do you experience persistent pain around the back of your neck?",
+    "title": "명치주위 통증이\n지속적으로 있나요?",
     "subQuestion": "1-1",
     "checkUp": [
       "Gastroscopy (위내시경)"
     ],
     "next": "2",
     "current": "1",
-    "expression": "pain around the solar plexus"
+    "expression": "명치주위 통증"
   },
   "2": {
     "title": "최근에 체중이 감소하였나요?",
