@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todaytest/core/answer.controller.dart';
 import 'package:todaytest/core/router.dart';
-import 'package:dart_openai/dart_openai.dart';
-import 'package:todaytest/env/env.dart';
 
 void main() async {
-  OpenAI.apiKey = Env.apiKey;
   runApp(const MainApp());
 }
 
@@ -37,7 +34,7 @@ class _MainAppState extends State<MainApp> {
         builder: (context, child) {
           return MediaQuery(
             data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-            child: child ?? Container(),
+            child: child ?? SizedBox.shrink(),
           );
         },
       ),

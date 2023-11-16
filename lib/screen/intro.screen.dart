@@ -90,9 +90,7 @@ class _IntroScreenState extends State<IntroScreen> {
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                12,
-              ),
+              borderRadius: BorderRadius.circular(12),
               side: BorderSide.none,
             ),
             backgroundColor: Theme.of(context).primaryColor,
@@ -101,9 +99,7 @@ class _IntroScreenState extends State<IntroScreen> {
             router.replace('/question/1');
           },
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 15,
-            ),
+            padding: const EdgeInsets.symmetric(vertical: 15),
             child: Text(
               'AI문진 시작하기',
               style: textTheme.bodyMedium?.copyWith(
