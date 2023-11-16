@@ -11,7 +11,7 @@
     <br />
     <a href="https://todaytest.org"><strong>샘플 페이지 »</strong></a>
 
-    BioBytes
+    BioBytes · WSCH
   </p>
 </div>
 
@@ -23,11 +23,11 @@
 5) API : ![OpenAI]
 
 ## 주요기능
-1) Text-embedding 기반 대화형 증상분석 서비스
+### 1) Text-embedding 기반 대화형 증상분석 서비스
 ![Model](assets/thumbnail/model.png)
-2) Vision 기반 통증부위 분석 서비스
+### 2) Vision 기반 통증부위 분석 서비스
 ![Vision](assets/thumbnail/vision.png)
-3) Pose-estimation 기반 근골격계 자가진단-치료 서비스 (예정)
+### 3) Pose-estimation 기반 근골격계 자가진단-치료 서비스 (예정)
 ![PoseEstimation](assets/thumbnail/pose_estimation.png)
 
 
