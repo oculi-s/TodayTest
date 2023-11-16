@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todaytest/core/answer.controller.dart';
+import 'package:todaytest/core/old.answer.controller.dart';
 
 import '../core/router.dart';
 
@@ -19,7 +19,7 @@ class _IntroScreenState extends State<IntroScreen> {
     /// browser history back 버튼으로 인해
     /// intro screen으로 다시 돌아가게 될 경우 기존 응답 데이터 초기화
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      context.read<AnswerController>().clearResult('0');
+      context.read<AnswerOXController>().clearResult('0');
     });
   }
 

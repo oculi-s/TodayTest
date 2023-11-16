@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:todaytest/core/answer.controller.dart';
 import 'package:todaytest/component/custom_radio.dart';
-import 'package:todaytest/data/question.dart';
+import 'package:todaytest/core/answer.controller.dart';
+import 'package:todaytest/data/qna.dart';
 import 'package:todaytest/core/router.dart';
 import 'package:todaytest/core/utils.dart';
 
@@ -30,18 +31,18 @@ class Bubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-    var textTheme = theme.textTheme;
-    var isDoc = from == 'doctor';
-    var align = isDoc ? Alignment(-1, 0) : Alignment(1, 0);
+    ThemeData theme = Theme.of(context);
+    TextTheme textTheme = theme.textTheme;
+    bool isDoc = from == 'doctor';
+    Alignment align = isDoc ? Alignment(-1, 0) : Alignment(1, 0);
 
     return Container(
       margin: EdgeInsets.symmetric(vertical: 4.0),
       child: Container(
         alignment: align,
         child: DecoratedBox(
-          decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 243, 224, 166),
+          decoration: BoxDecoration(
+            color: theme.primaryColorLight,
             borderRadius: BorderRadius.all(
               Radius.circular(8.0),
             ),
@@ -77,12 +78,72 @@ class Bubble extends StatelessWidget {
 }
 
 class _QuestionScreenState extends State<QuestionScreen> {
-  final myController = TextEditingController();
+  final textController = TextEditingController();
+  final scrollController = ScrollController();
+  final answerController = AnswerController();
+  bool cansubmit = true;
+  List<Bubble> bubbles = [];
+  Question? question;
+  Future<void> addQuestion({String? code}) async {
+    print("Q $cansubmit");
+    if (code == null) return;
+    question = await Utils().getQuestion(code);
+    setState(() {
+      bubbles.add(
+        Bubble(
+          from: 'doctor',
+          label: question!.data,
+        ),
+      );
+    });
+    await Future.delayed(Duration(milliseconds: 500));
+    textController.clear();
+  }
+
+  Future<void> addAnswer({String? input}) async {
+    print("A $cansubmit");
+    if (input == null && textController.text == '') return;
+    if (!cansubmit || question == null) return;
+    String data = input ?? textController.text;
+    setState(() {
+      bubbles.add(
+        Bubble(
+          from: 'patient',
+          label: data,
+        ),
+      );
+    });
+
+    cansubmit = false;
+    Answer answer = Answer(data: data, code: question!.code);
+
+    /// question.type에 따라 다르게 생각해야
+    await answerController.addAnswerData(answer);
+    await Future.delayed(Duration(milliseconds: 500));
+    textController.clear();
+    if (Utils().jsonData[answer.next] == null) {
+    } else {
+      await addQuestion(code: answer.next);
+    }
+    cansubmit = true;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _init();
+  }
+
+  Future<void> _init() async {
+    await addQuestion(code: 'A0');
+    await addAnswer(input: '가슴');
+  }
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-    var textTheme = theme.textTheme;
+    ThemeData theme = Theme.of(context);
+    TextTheme textTheme = theme.textTheme;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -99,7 +160,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
             },
             child: Icon(
               Icons.arrow_back_ios_new_rounded,
-              color: Theme.of(context).primaryColor,
+              color: theme.primaryColor,
             ),
           ),
         ),
@@ -107,29 +168,20 @@ class _QuestionScreenState extends State<QuestionScreen> {
       body: SafeArea(
         // child: SizedBox.shrink(),
         child: DecoratedBox(
-          decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 255, 249, 230),
+          decoration: BoxDecoration(
+            color: theme.secondaryHeaderColor,
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(
-              vertical: 30,
+              vertical: 20,
               horizontal: 16,
             ),
-            child: Column(
-              children: const [
-                Bubble(
-                  from: 'doctor',
-                  label: '어디가 아파서 오셨나요?',
-                ),
-                Bubble(
-                  from: 'patient',
-                  label: '가슴이 아파서 왔어요.',
-                ),
-                Bubble(
-                  from: 'doctor',
-                  label: '가슴이 어떻게 아프세요?',
-                )
-              ],
+            child: ListView.builder(
+              controller: scrollController,
+              itemCount: bubbles.length,
+              itemBuilder: (context, index) {
+                return bubbles[index];
+              },
             ),
           ),
         ),
@@ -139,12 +191,11 @@ class _QuestionScreenState extends State<QuestionScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Container(
-              width: 400,
-              margin: EdgeInsets.all(8),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.7,
               child: TextField(
-                // autofocus: true,
-                controller: myController,
+                controller: textController,
+                onEditingComplete: addAnswer,
               ),
             ),
             ElevatedButton(
@@ -153,21 +204,12 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   borderRadius: BorderRadius.circular(12),
                   side: BorderSide.none,
                 ),
-                backgroundColor: Theme.of(context).primaryColor,
+                backgroundColor: theme.primaryColor,
               ),
-              onPressed: () async {
-                router.replace('/question/1');
-              },
+              onPressed: addAnswer,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 15,
-                ),
-                child: Text(
-                  '전송',
-                  style: textTheme.bodyMedium?.copyWith(
-                    color: Colors.white,
-                  ),
-                ),
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Icon(Icons.send_rounded),
               ),
             ),
           ],

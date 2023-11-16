@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todaytest/core/answer.controller.dart';
+import 'package:todaytest/core/old.answer.controller.dart';
 import 'package:todaytest/core/router.dart';
+import 'package:dart_openai/dart_openai.dart';
+import 'package:todaytest/env/env.dart';
 
 void main() async {
+  OpenAI.apiKey = Env.apiKey;
   runApp(const MainApp());
 }
 
@@ -18,7 +21,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => AnswerController(),
+      create: (context) => AnswerOXController(),
       child: MaterialApp.router(
         routerConfig: router,
         debugShowCheckedModeBanner: false,

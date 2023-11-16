@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:todaytest/core/answer.controller.dart';
+import 'package:todaytest/core/old.answer.controller.dart';
 import 'package:screenshot/screenshot.dart';
 
 import "../core/save_mobile.dart" if (dart.library.html) "../core/save_web.dart"
@@ -27,7 +27,7 @@ class _ResultScreenState extends State<ResultScreen> {
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
 
-    AnswerController controller = context.read<AnswerController>();
+    AnswerOXController controller = context.read<AnswerOXController>();
 
     return Scaffold(
       body: Stack(
@@ -398,7 +398,7 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 }
 
-Widget longWidget(AnswerController controller) {
+Widget longWidget(AnswerOXController controller) {
   return Builder(builder: (context) {
     return Container(
       width: 390,

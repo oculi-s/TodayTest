@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      await Utils().readQuestionJson();
+      await Utils().initialLoad();
 
       Timer(const Duration(milliseconds: 2500), () {
         router.replace('/intro');

@@ -6,6 +6,7 @@
 **/android/
 **/macos/
 **/ios/
+assets/temp/
 
 # Miscellaneous
 *.class
