@@ -2,7 +2,7 @@
 
 <div align="center">
   <a href="https://todaytest.org">
-    <img src="./assets/logo.png" alt="Logo" height="140">
+    <img src="./assets/logo_white.png" alt="Logo" height="140">
   <h3 align="center">오늘검사2.0</h3>
   </a>
   </a>
